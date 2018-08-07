@@ -1,8 +1,11 @@
 from django.shortcuts import render
-
-# Create your views here.
-from django.http import HttpResponse
+from .models import Ware
+from django.core.paginator import Paginator
 
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the wares index.")
+    ware_list = Ware.objects.all()
+    paginator = Paginator(ware_list, 4)  # Кол-во записей на странице
+    page = request.GET.get('page')
+    wares = paginator.get_page(page)
+    return render(request, 'wares/index.html', context={'wares': wares})

@@ -1,0 +1,48 @@
+{% extends 'wares/base.html' %}
+
+{% block content %}
+    <h1>Расходка</h1>
+
+    <table class="table table-hover table-dark">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Наименовани</th>
+          <th scope="col">Код</th>
+          <th scope="col">Описание</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for ware in wares %}
+        <tr>
+          <th scope="row">{{ ware.id }}</th>
+          <td>{{ ware.ware_name }}</td>
+          <td>{{ ware.ware_code }}</td>
+          <td>{{ ware.ware_description|linebreaksbr|truncatewords:12 }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+
+
+    {% if wares.num_pages > 1 %}
+    <div class="pagination">
+        <span class="step-links">
+            {% if wares.has_previous %}
+                <a href="?page=1">&laquo; Нач.</a>
+                <a href="?page={{ wares.previous_page_number }}">Пред.</a>
+            {% endif %}
+    
+            <span class="current">
+                Страница {{ wares.number }} из {{ wares.paginator.num_pages }}.
+            </span>
+    
+            {% if wares.has_next %}
+                <a href="?page={{ wares.next_page_number }}">След.</a>
+                <a href="?page={{ wares.paginator.num_pages }}">Конец &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+    {% endif %}
+
+{% endblock %}
