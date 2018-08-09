@@ -1,28 +1,34 @@
 {% extends 'wares/base.html' %}
 
 {% block content %}
-    <h1>Расходка</h1>
 
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Наименование</th>
-          <th scope="col">Код</th>
-          <th scope="col">Описание</th>
-        </tr>
-      </thead>
-      <tbody>
-      {% for ware in wares %}
-        <tr>
-          <th scope="row">{{ ware.id }}</th>
-          <td>{{ ware.ware_name }}</td>
-          <td>{{ ware.ware_code }}</td>
-          <td>{{ ware.ware_description|linebreaksbr|truncatewords:12 }}</td>
-        </tr>
-      {% endfor %}
-      </tbody>
-    </table>
+
+
+    <div class="accordion" id="accordionWare">
+      <div class="card">
+
+       {% for ware in wares %}
+
+        <div class="card-header" id="heading{{ ware.id }}">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse{{ ware.id }}" aria-expanded="false" aria-controls="collapse{{ ware.id }}">
+              {{ ware.ware_name }}
+            </button>
+          </h5>
+        </div>
+
+        <div id="collapse{{ ware.id }}" class="collapse" aria-labelledby="heading{{ ware.id }}" data-parent="#accordionWare">
+          <div class="card-body">
+            <h6 class="card-title">Код производителя: {{ ware.ware_code }}</h6>
+            <p class="card-text>">{{ ware.ware_description|linebreaksbr|truncatewords:"50" }}</p>
+            <a href="{{ ware.id }}/detail/" class="btn btn-primary">Подробнее</a>
+          </div>
+        </div>
+
+       {% endfor %}
+
+      </div>
+    </div>
 
 
     {% if wares.num_pages > 1 %}

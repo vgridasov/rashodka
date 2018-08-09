@@ -5,12 +5,18 @@ from django.core.paginator import Paginator
 
 def index(request):
     ware_list = Ware.objects.all()
-    paginator = Paginator(ware_list, 6)  # Кол-во записей на странице
+    paginator = Paginator(ware_list, 8)  # Кол-во записей на странице
     page = request.GET.get('page')
     wares = paginator.get_page(page)
     return render(request, 'wares/index.html', context={'wares': wares})
 
 
+#TODO: разобраться с выводом нумерации страниц в index.html
+
+
 def ware_detail(request, ware_id):
     ware = get_object_or_404(Ware, pk=ware_id)
     return render(request, 'wares/ware_detail.html', context={'ware': ware})
+
+
+#TODO: Добавить представление для вывода цены товара с историей изменений
