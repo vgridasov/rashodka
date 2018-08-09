@@ -48,12 +48,14 @@
                <a class="page-link" href="#">...</a>
             </li>
           {% endif %}
+          <li class="page-item active"><a class="page-link" href="#">{{ wares.previous_page_number }}</a></li>
 
       {% endif %}
 
           <li class="page-item active"><a class="page-link" href="#">{{ wares.number }}</a></li>
 
       {% if wares.has_next %}
+          <li class="page-item active"><a class="page-link" href="#">{{ wares.next_page_number }}</a></li>
 
           {% if wares.next_page_number < wares.paginator.num_pages %}
             <li class="page-item">
