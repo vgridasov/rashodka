@@ -19,10 +19,7 @@ class Ware(models.Model):
     ware_code = models.CharField(max_length=20, verbose_name="Код")
     ware_vendor = models.ForeignKey(Vendor, on_delete=models.SET_NULL, blank=True, null=True)
     ware_description = models.TextField(verbose_name="Описание")
-    ware_cat1 = models.ForeignKey(Cat, on_delete=models.SET_NULL, blank=True, null=True)
-    ware_cat2 = models.ForeignKey(Cat, on_delete=models.SET_NULL, blank=True, null=True)
-    ware_cat3 = models.ForeignKey(Cat, on_delete=models.SET_NULL, blank=True, null=True)
-    ware_cat4 = models.ForeignKey(Cat, on_delete=models.SET_NULL, blank=True, null=True)
+    ware_cat = models.ForeignKey(Cat, on_delete=models.SET_NULL, blank=True, null=True)
     def __str__(self):
         return self.ware_name
 
