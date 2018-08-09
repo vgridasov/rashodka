@@ -23,6 +23,9 @@ class Ware(models.Model):
     def __str__(self):
         return self.ware_name
 
+    class Meta:
+        ordering = ['id']
+
 
 class Seller(models.Model):
     seller_name = models.CharField(max_length=200, verbose_name="Наименование")
