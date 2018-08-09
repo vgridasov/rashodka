@@ -1,0 +1,19 @@
+{% extends 'wares/base.html' %}
+
+
+{% block content %}
+
+<div>
+    <div>
+        <h2>{{ ware.ware_name }}</h2>
+        <h5>Код: {{ ware.ware_code }}; Вендор: {{ ware.ware_vendor }}</h5>
+        {{ ware.ware_description|linebreaksbr }}
+    </div>
+</div>
+
+<div class="footer">
+    <a href="/">Назад</a>
+
+</div>
+
+{% endblock %}
