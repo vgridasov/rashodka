@@ -8,7 +8,7 @@ class Cat(models.Model):
 
 
 class Vendor(models.Model):
-    vendor_name = models.CharField(max_length=50, verbose_name="Категория")
+    vendor_name = models.CharField(max_length=50, verbose_name="Вендор")
     def __str__(self):
         return self.vendor_name
 
@@ -16,7 +16,7 @@ class Vendor(models.Model):
 
 class Ware(models.Model):
     ware_name = models.CharField(max_length=200, verbose_name="Наименование")
-    ware_code = models.CharField(max_length=20, verbose_name="Код")
+    ware_code = models.CharField(max_length=20, verbose_name="Код производителя")
     ware_vendor = models.ForeignKey(Vendor, on_delete=models.SET_NULL, blank=True, null=True)
     ware_description = models.TextField(verbose_name="Описание")
     ware_cat = models.ForeignKey(Cat, on_delete=models.SET_NULL, blank=True, null=True)
