@@ -18,7 +18,7 @@ class Ware(models.Model):
     ware_name = models.CharField(max_length=200, verbose_name="Наименование")
     ware_code = models.CharField(max_length=20, verbose_name="Код производителя")
     ware_vendor = models.ForeignKey(Vendor, on_delete=models.SET_NULL, blank=True, null=True)
-    ware_description = models.TextField(verbose_name="Описание")
+    ware_description = models.TextField(verbose_name="Описание", blank=True, null=True)
     ware_cat = models.ForeignKey(Cat, on_delete=models.SET_NULL, blank=True, null=True)
     def __str__(self):
         return self.ware_name

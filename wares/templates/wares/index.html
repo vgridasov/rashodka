@@ -62,9 +62,14 @@
           <li class="page-item"><a class="page-link" href="?page={{ wares.next_page_number }}">{{ wares.next_page_number }}</a></li>
 
           {% if wares.next_page_number < wares.paginator.num_pages %}
-            <li class="page-item">
-               <a class="page-link" href="?page={{ wares.next_page_number }}">...</a>
-            </li>
+
+            {% if wares.next_page_number|add:"1" < wares.paginator.num_pages %}
+                <li class="page-item">
+                   <a class="page-link" href="?page={{ wares.next_page_number }}">...</a>
+                </li>
+            {% endif %}
+
+
             <li class="page-item">
                 <a class="page-link" href="?page={{ wares.paginator.num_pages }}">{{ wares.paginator.num_pages }}</a>
             </li>
