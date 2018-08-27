@@ -21,7 +21,8 @@
               <div class="card-body">
                 <h6 class="card-title">Код производителя: {{ ware.ware_code }}</h6>
                 <p class="card-text>">{{ ware.ware_description|linebreaksbr|truncatewords:"50" }}</p>
-                <a href="{{ ware.id }}/detail/" class="btn btn-primary">Подробнее</a>
+                <a href="{{ ware.id }}/detail/" class="btn">Подробнее</a>
+                <a href="{{ ware.id }}/add-to-order/" class="btn btn-primary">Добавить в заказ</a>
               </div>
             </div>
        {% endfor %}

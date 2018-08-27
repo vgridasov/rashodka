@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Ware
+from .models import Ware, Order
 from django.core.paginator import Paginator
 
 
@@ -14,6 +14,12 @@ def index(request):
 def ware_detail(request, ware_id):
     ware = get_object_or_404(Ware, pk=ware_id)
     return render(request, 'wares/ware_detail.html', context={'ware': ware})
+
+
+def add_to_order(request, item_id):
+    item = Ware.objects.get(pk=item_id)
+    # TODO: сформировать order_date, order_num для заказа
+    Order.objects.create(customer=request.user, item=item, count=1)
 
 
 #TODO: Добавить представление для вывода цены товара с историей изменений
