@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 
 class Cat(models.Model):
     cat_name = models.CharField(max_length=50, verbose_name="Категория")
@@ -38,6 +38,14 @@ class Price(models.Model):
     ware = models.ForeignKey(Ware, on_delete=models.CASCADE)
     price_value = models.DecimalField(verbose_name="Цена(руб.)", default=0, max_digits=19, decimal_places=2)
     price_tax = models.SmallIntegerField(verbose_name="Налог,%")
-    pub_date = models.DateTimeField(verbose_name="Дата")
+    pub_date = models.DateTimeField(verbose_name="Дата предложения")
     seller = models.ForeignKey(Seller, on_delete=models.SET_NULL, blank=True, null=True)
+
+
+class Order(models.Model):
+    customer = models.ForeignKey(User, on_delete=models.CASCADE)     # Кто заказал
+    item = models.ForeignKey(Ware, on_delete=models.CASCADE)         # Что заказал
+    count = models.PositiveIntegerField()  # Сколько заказал
+    order_date = models.DateField(verbose_name="Дата заказа") # Когда заказал
+    order_num = models.CharField(max_length=15, verbose_name="Номер заказа") # Номер общего заказа пользователя
 
