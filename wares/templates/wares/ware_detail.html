@@ -10,7 +10,8 @@
       <h5>Производитель: {{ ware.ware_vendor }}</h5>
       <h5>Код производителя: {{ ware.ware_code }}</h5>
       <p class="card-test">{{ ware.ware_description|linebreaksbr }}</p>
-      <a href="/wares/" class="btn btn-primary">Назад</a>
+      <a href="/wares/" class="btn">Вернуться к каталогу</a>
+      <a href="{{ ware.id }}/add-to-order/" class="btn btn-primary">Добавить в заказ</a>
   </div>
 </div>
 
